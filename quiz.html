@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>History Help!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #fceabb, #f8b500);
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #264653;
+      margin-bottom: 30px;
+    }
+    .question {
+      background: #ffffffdd;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      margin-bottom: 25px;
+      transition: transform 0.3s ease;
+    }
+    .question:hover {
+      transform: scale(1.01);
+    }
+    .question p {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+    button {
+      margin: 5px;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-true {
+      background: #2a9d8f;
+      color: white;
+    }
+    .btn-false {
+      background: #e76f51;
+      color: white;
+    }
+    button:hover {
+      transform: scale(1.05);
+      opacity: 0.95;
+    }
+    .feedback {
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    #result {
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 40px;
+      color: #264653;
+    }
+  </style>
+</head>
+<body>
+
+<h1>📚 History Help!</h1>
+
+<div id="quiz"></div>
+<div id="result"></div>
+
+<script>
+  const questions = [
+    {
+      text: "In 'Defense of the Indians', Bartolomé de las Casas argued that the indigenous peoples of the Americas were incapable of self-governance.",
+      correct: "False"
+    },
+    {
+      text: "In Chapter 1 of *A New World*, Eric Foner argues that the Pueblo Revolt of 1680 was largely a response to Spanish efforts to forcibly suppress Pueblo religious practices.",
+      correct: "True"
+    },
+    {
+      text: "In *1491*, Charles Mann argues that prior to European contact, the Americas were sparsely populated with isolated, primitive societies, and that the indigenous peoples had little impact on the environment.",
+      correct: "False"
+    },
+    {
+      text: "Morton admires Native Americans' humbleness and freedom.",
+      correct: "True"
+    }
+  ];
+
+  let score = 0;
+  const quizDiv = document.getElementById("quiz");
+
+  questions.forEach((q, index) => {
+    const container = document.createElement("div");
+    container.className = "question";
+
+    const questionText = document.createElement("p");
+    questionText.innerText = `${index + 1}. ${q.text}`;
+    container.appendChild(questionText);
+
+    const btnTrue = document.createElement("button");
+    btnTrue.className = "btn-true";
+    btnTrue.innerText = "True";
+    btnTrue.onclick = () => handleAnswer(index, "True", btnTrue, btnFalse);
+    container.appendChild(btnTrue);
+
+    const btnFalse = document.createElement("button");
+    btnFalse.className = "btn-false";
+    btnFalse.innerText = "False";
+    btnFalse.onclick = () => handleAnswer(index, "False", btnTrue, btnFalse);
+    container.appendChild(btnFalse);
+
+    const feedback = document.createElement("div");
+    feedback.className = "feedback";
+    feedback.id = `feedback-${index}`;
+    container.appendChild(feedback);
+
+    quizDiv.appendChild(container);
+  });
+
+  function handleAnswer(index, selected, btnTrue, btnFalse) {
+    const correct = questions[index].correct;
+    const feedback = document.getElementById(`feedback-${index}`);
+
+    if (selected === correct) {
+      feedback.innerText = "✅ Correct!";
+      feedback.style.color = "#2a9d8f";
+      score++;
+    } else {
+      feedback.innerText = "❌ Wrong!";
+      feedback.style.color = "#e63946";
+    }
+
+    btnTrue.disabled = true;
+    btnFalse.disabled = true;
+
+    const allAnswered = [...document.querySelectorAll(".feedback")]
+      .every(f => f.innerText !== "");
+
+    if (allAnswered) {
+      document.getElementById("result").innerText = 
+        `🎉 Quiz Complete! You scored ${score} out of ${questions.length}.`;
+    }
+  }
+</script>
+
+</body>
+</html>

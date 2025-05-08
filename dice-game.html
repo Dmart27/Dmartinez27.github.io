@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dice Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ecf0f1;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #2c3e50;
+    }
+
+    input, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    #game, #result {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #log {
+      margin-top: 20px;
+      background: white;
+      padding: 20px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+      white-space: pre-wrap;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎲 Dice Game to 50!</h1>
+
+  <div id="setup">
+    <input type="text" id="player1" placeholder="Enter Player 1 Name" />
+    <input type="text" id="player2" placeholder="Enter Player 2 Name" />
+    <button onclick="startGame()">Start Game</button>
+  </div>
+
+  <div id="game">
+    <h2 id="turnHeader"></h2>
+    <button onclick="rollDice()">Roll Dice</button>
+    <div id="log"></div>
+  </div>
+
+  <div id="result">
+    <h2 id="winner"></h2>
+    <button onclick="location.reload()">Play Again</button>
+  </div>
+
+  <script>
+    let positions = {}, currentPlayer = "";
+    function diceRoll() {
+      return Math.floor(Math.random() * 12) + 1;
+    }
+
+    function startGame() {
+      const p1 = document.getElementById("player1").value.trim();
+      const p2 = document.getElementById("player2").value.trim();
+
+      if (!p1 || !p2) return alert("Please enter both player names!");
+
+      positions[p1] = 0;
+      positions[p2] = 0;
+      currentPlayer = p1;
+
+      document.getElementById("setup").style.display = "none";
+      document.getElementById("game").style.display = "block";
+      document.getElementById("turnHeader").innerText = `It's ${currentPlayer}'s turn`;
+    }
+
+    function rollDice() {
+      const roll = diceRoll();
+      positions[currentPlayer] += roll;
+
+      const log = document.getElementById("log");
+      log.innerText += `${currentPlayer} rolled a ${roll} and moved to ${positions[currentPlayer]}\n`;
+
+      if (positions[currentPlayer] >= 50) {
+        document.getElementById("game").style.display = "none";
+        document.getElementById("result").style.display = "block";
+        document.getElementById("winner").innerText = `${currentPlayer} wins! 🎉`;
+      } else {
+        currentPlayer = Object.keys(positions).find(p => p !== currentPlayer);
+        document.getElementById("turnHeader").innerText = `It's ${currentPlayer}'s turn`;
+      }
+    }
+  </script>
+
+</body>
+</html>

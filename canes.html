@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Raising Cane's Order App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff8f0;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      color: #333;
+    }
+
+    h1 {
+      color: #d72638;
+    }
+
+    .section {
+      margin: 20px auto;
+      max-width: 500px;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 10px 0;
+    }
+
+    button {
+      padding: 10px 16px;
+      font-size: 16px;
+      background-color: #f76c5e;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background-color: #d94c3d;
+    }
+
+    #output {
+      white-space: pre-wrap;
+      margin-top: 20px;
+      background: #f0f9ff;
+      border-radius: 10px;
+      padding: 15px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome to Raising Cane's!</h1>
+
+  <div class="section" id="combo-section">
+    <h2>Pick a Combo</h2>
+    <div class="button-group">
+      <button onclick="selectCombo('The Box Combo', 11.49)">Box Combo ($11.49)</button>
+      <button onclick="selectCombo('The Three Finger Combo', 9.59)">Three Finger ($9.59)</button>
+      <button onclick="selectCombo('The Caniac Combo', 15.59)">Caniac Combo ($15.59)</button>
+      <button onclick="selectCombo('The Sandwich Combo', 9.49)">Sandwich Combo ($9.49)</button>
+      <button onclick="selectCombo('The Kids Combo', 6.69)">Kids Combo ($6.69)</button>
+    </div>
+  </div>
+
+  <div class="section" id="drink-section" style="display: none;">
+    <h2>Would you like a drink?</h2>
+    <div class="button-group">
+      <button onclick="selectDrink('kids', 1.19)">Kids ($1.19)</button>
+      <button onclick="selectDrink('regular', 2.49)">Regular ($2.49)</button>
+      <button onclick="selectDrink('large', 2.99)">Large ($2.99)</button>
+      <button onclick="selectDrink('Jug', 5.99)">Jug ($5.99)</button>
+      <button onclick="selectDrink('', 0)">No Drink</button>
+    </div>
+  </div>
+
+  <div class="section" id="fries-section" style="display: none;">
+    <h2>Would you like fries?</h2>
+    <div class="button-group">
+      <button onclick="selectFries(true)">Yes - Crinkle Cut ($2.26)</button>
+      <button onclick="selectFries(false)">No</button>
+    </div>
+  </div>
+
+  <div class="section" id="sauce-section" style="display: none;">
+    <h2>How many Cane Sauce packets?</h2>
+    <div class="button-group">
+      <button onclick="selectSauce(0)">0</button>
+      <button onclick="selectSauce(1)">1</button>
+      <button onclick="selectSauce(2)">2</button>
+      <button onclick="selectSauce(3)">3</button>
+      <button onclick="selectSauce(4)">4</button>
+    </div>
+  </div>
+
+  <div class="section" id="summary-section" style="display: none;">
+    <h2>Order Summary</h2>
+    <div id="output"></div>
+    <button onclick="resetOrder()">Start New Order</button>
+  </div>
+
+  <script>
+    let total = 0;
+    let order = [];
+    let summary = "";
+    const output = document.getElementById("output");
+
+    function selectCombo(name, price) {
+      total += price;
+      order.push(name);
+      summary += `Combo: ${name} - $${price.toFixed(2)}\n`;
+      document.getElementById("combo-section").style.display = "none";
+      document.getElementById("drink-section").style.display = "block";
+    }
+
+    function selectDrink(size, price) {
+      if (size) {
+        total += price;
+        order.push(size + " drink");
+        summary += `Drink: ${size} - $${price.toFixed(2)}\n`;
+      } else {
+        summary += "Drink: None\n";
+      }
+      document.getElementById("drink-section").style.display = "none";
+      document.getElementById("fries-section").style.display = "block";
+    }
+
+    function selectFries(wantsFries) {
+      if (wantsFries) {
+        total += 2.26;
+        order.push("Crinkle Cut Fries");
+        summary += "Fries: Yes - $2.26\n";
+      } else {
+        summary += "Fries: No\n";
+      }
+      document.getElementById("fries-section").style.display = "none";
+      document.getElementById("sauce-section").style.display = "block";
+    }
+
+    function selectSauce(count) {
+      let cost = count * 0.25;
+      total += cost;
+      order.push(`${count} Cane Sauce`);
+      summary += `Cane Sauce: ${count} ($${cost.toFixed(2)})\n`;
+      summary += `\nTotal: $${total.toFixed(2)}\n`;
+      summary += `Items: ${order.join(", ")}`;
+      output.textContent = summary;
+      document.getElementById("sauce-section").style.display = "none";
+      document.getElementById("summary-section").style.display = "block";
+    }
+
+    function resetOrder() {
+      total = 0;
+      order = [];
+      summary = "";
+      output.textContent = "";
+      document.getElementById("summary-section").style.display = "none";
+      document.getElementById("combo-section").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
+

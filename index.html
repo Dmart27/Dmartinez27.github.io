@@ -1,278 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
+  <title>Diego Martinez - Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Diego Martinez - Personal Website</title>
-  <link rel="stylesheet" href="styles.css">
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background-color: #f0f4f8;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f9fd;
       color: #333;
     }
 
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #0077cc;
+      color: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffdd57;
+    }
+
+    header, section, footer {
+      padding: 80px 20px 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+
     header {
-      background-color: #003366;
-      color: #fff;
-      padding: 30px;
+      background: #ffdd57;
+      border-bottom: 4px solid #ffb347;
+      border-radius: 0 0 20px 20px;
       text-align: center;
     }
 
-    section {
-      padding: 30px;
-      background-color: #ffffff;
-      margin: 20px auto;
-      border-radius: 10px;
-      max-width: 900px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
     }
 
-    h1, h2 {
-      color: #003366;
+    section {
+      background: white;
+      margin: 30px auto;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    section h2 {
+      color: #0077cc;
+      margin-bottom: 15px;
+    }
+
+    .about-box {
+      background: #eaf6ff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      margin-bottom: 10px;
     }
 
     ul {
-      line-height: 1.6;
+      list-style-type: disc;
+      padding-left: 20px;
     }
 
-    img.profile-pic {
-      width: 200px;
-      height: auto;
-      border-radius: 10px;
-      margin-right: 20px;
-      float: left;
+    a.button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #0077cc;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s;
     }
 
-    .about-info {
-      overflow: hidden;
+    a.button:hover {
+      background-color: #005fa3;
+    }
+
+    img {
+      max-width: 200px;
+      border-radius: 15px;
+      margin-top: 20px;
     }
 
     footer {
       text-align: center;
-      background-color: #003366;
-      color: white;
-      padding: 10px;
+      font-size: 14px;
+      color: #777;
     }
 
-    a {
-      color: #007acc;
-    }
-
-    /* Modal Styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 10;
-      padding-top: 60px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.6);
-    }
-
-    .modal-content {
-      background-color: #fff;
-      margin: auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 90%;
-      max-width: 600px;
-      border-radius: 10px;
-    }
-
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    #output {
-      margin-top: 20px;
-      white-space: pre-wrap;
-    }
-
-    button {
-      background-color: #003366;
-      color: white;
-      border: none;
-      padding: 10px 20px;
+    .project-link {
       margin-top: 10px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    button:hover {
-      background-color: #0055aa;
     }
   </style>
 </head>
 
 <body>
+  <nav>
+    <a href="#about-me">About Me</a>
+    <a href="#bio">Bio</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-<header>
-  <h1>Welcome to My Website!</h1>
-  <p>Hi, I'm Diego Martinez, a Computer Science Student at Belen Jesuit Preparatory School</p>
-</header>
+  <header>
+    <h1>Welcome to My Website!</h1>
+    <p>Hi, I'm Diego Martinez, a Computer Science Student at Belen Jesuit Preparatory School</p>
+  </header>
 
-<section id="about-me">
-  <h2>About Me</h2>
-  <div class="about-info">
-    <img src="./IMG_0481.jpg" alt="Diego Martinez" class="profile-pic" onerror="this.style.display='none';">
-    <p><strong>Name:</strong> Diego Martinez</p>
-    <p><strong>School:</strong> Belen Jesuit Preparatory School</p>
-    <p><strong>Grade:</strong> Sophomore</p>
-    <p><strong>Interests:</strong> Computer science, new technologies, programming</p>
-  </div>
-</section>
+  <section id="about-me">
+    <h2>About Me</h2>
+    <div class="about-box"><strong>Name:</strong> Diego Martinez</div>
+    <div class="about-box"><strong>Grade:</strong> Sophomore</div>
+    <div class="about-box"><strong>School:</strong> Belen Jesuit Preparatory School</div>
+    <div class="about-box"><strong>Passions:</strong> Computer Science, Programming, and AI</div>
+    <img src="IMG_0481.jpg" alt="Diego Martinez Photo">
+  </section>
 
-<section id="bio">
-  <h2>Bio</h2>
-  <p>I am studying computer science, and my interests include programming, web development, and artificial intelligence. I aim to pursue a career in software engineering and contribute to meaningful projects in the tech industry.</p>
-</section>
+  <section id="bio">
+    <h2>Bio</h2>
+    <p>I am studying computer science, and my interests include programming, web development, and artificial intelligence. I aim to pursue a career in software engineering and contribute to meaningful projects in the tech industry.</p>
+  </section>
 
-<section id="projects">
-  <h2>Projects</h2>
-  <ul>
-    <li><strong>Personal Portfolio Website:</strong> A website to showcase my skills and projects.</li>
-    <li><strong>Dice Game:</strong> A Dice Game built with Python on Trinket.</li>
-    <li><strong>Todo List:</strong> Do well on my ELC!</li>
-    <li><strong>Raising Cane's Ordering Simulator:</strong> 
-      <button onclick="openModal()">Try it!</button>
-    </li>
-  </ul>
-</section>
+  <section id="projects">
+    <h2>Projects</h2>
+    <ul>
+      <li><strong>Personal Portfolio Website:</strong> A site to showcase my skills and work.</li>
+      <li>
+        <strong>Raising Cane's Order App:</strong> An interactive ordering simulator.  
+        <div class="project-link"><a href="canes.html" class="button">Try the App</a></div>
+      </li>
+      <li>
+        <strong>Dice Game:</strong> A two-player race to 50 with dice rolls.  
+        <div class="project-link"><a href="dice-game.html" class="button">Play Dice Game</a></div>
+      </li>
+      <li>
+        <strong>History Quiz:</strong> A four question history quiz  
+        <div class="project-link"><a href="quiz.html" class="button">Play History Quiz</a></div>
+      </li>
+    </ul>
+  </section>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <p>If you'd like to get in touch, feel free to reach out!</p>
-  <ul>
-    <li>Email: <a href="mailto:dmartinez27@belenwolverines.org">dmartinez27@belenwolverines.org</a></li>
-    <li>GitHub: <a href="https://github.com/yourusername" target="_blank">GitHub Profile</a></li>
-    <li>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn Profile</a></li>
-  </ul>
-</section>
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>If you'd like to get in touch, feel free to reach out!</p>
+    <ul>
+      <li>Email: <a href="mailto:dmartinez27@belenwolverines.org">dmartinez27@belenwolverines.org</a></li>
+      <li>GitHub: <a href="https://github.com/yourusername" target="_blank">GitHub Profile</a></li>
+      <li>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn Profile</a></li>
+    </ul>
+  </section>
 
-<footer>
-  <p>&copy; 2025 Diego Martinez</p>
-</footer>
-
-<!-- Modal for Raising Cane's App -->
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <h2>Welcome to Raising Cane's!</h2>
-    <div id="output"></div>
-    <button onclick="startOrder()">Start Order</button>
-  </div>
-</div>
-
-<script>
-function openModal() {
-  document.getElementById("myModal").style.display = "block";
-}
-
-function closeModal() {
-  document.getElementById("myModal").style.display = "none";
-}
-
-async function startOrder() {
-  const output = document.getElementById("output");
-  output.innerText = "";
-  let loopCheck = true;
-
-  while (loopCheck) {
-    let order = [];
-    let total = 0;
-    let food, beverage = "", fries, sauce = 0;
-    let beverageBought = false, friesBought = false;
-
-    food = prompt("Please pick a type of combo:\nThe Box Combo ($11.49)\nThe Three Finger Combo ($9.59)\nThe Caniac Combo ($15.59)\nThe Sandwich Combo ($9.49)\nThe Kids Combo ($6.69)");
-    if (["The Box Combo", "The Three Finger Combo", "The Caniac Combo", "The Sandwich Combo", "The Kids Combo"].includes(food)) {
-      order.push(food);
-      output.innerText += `${food}\n`;
-    } else {
-      output.innerText += "That's not a combo we sell here.\n";
-      continue;
-    }
-
-    let wantsDrink = prompt("Would you like a drink? (yes or no)");
-    if (wantsDrink === "yes") {
-      beverageBought = true;
-      beverage = prompt("Would you like a kids ($1.19), regular ($2.49), large ($2.99), or a Jug ($5.99)?");
-      if (["kids", "regular", "large", "Jug"].includes(beverage)) {
-        output.innerText += `You said ${beverage} drink.\n`;
-        order.push(beverage);
-      } else {
-        beverageBought = false;
-        output.innerText += "That's not a drink size option.\n";
-      }
-    } else {
-      output.innerText += "You did not want a drink.\n";
-    }
-
-    const prices = {
-      "The Box Combo": 11.49,
-      "The Three Finger Combo": 9.59,
-      "The Caniac Combo": 15.59,
-      "The Sandwich Combo": 9.49,
-      "The Kids Combo": 6.69,
-      "kids": 1.19,
-      "regular": 2.49,
-      "large": 2.99,
-      "Jug": 5.99
-    };
-    if (food in prices) total += prices[food];
-    if (beverage in prices) total += prices[beverage];
-
-    fries = prompt("Would you like french fries? (yes or no)");
-    if (fries === "yes") {
-      friesBought = true;
-      let confirmFries = prompt("You would like Crinkle Cut for $2.26? (yes to confirm)");
-      if (confirmFries === "yes") {
-        total += 2.26;
-        order.push("Crinkle Cut Fries");
-      }
-    } else {
-      output.innerText += "You did not want fries.\n";
-    }
-
-    let sauceCount = prompt("How many Cane Sauce Packets would you like?");
-    let sauceAmount = parseInt(sauceCount);
-    if (!isNaN(sauceAmount)) {
-      let sauceCost = sauceAmount * 0.25;
-      total += sauceCost;
-      order.push(`${sauceAmount} Cane Sauce`);
-    } else {
-      output.innerText += "Invalid sauce quantity.\n";
-      sauceAmount = 0;
-    }
-
-    let summary = "You bought: ";
-    summary += food;
-    summary += beverageBought ? `, ${beverage} drink` : ", nothing to drink";
-    summary += friesBought ? ", fries" : ", no fries";
-    summary += `, and ${sauceAmount} Cane sauce packets.`;
-    output.innerText += summary + "\n";
-
-    output.innerText += `Order: ${order.join(", ")}\n`;
-    output.innerText += `Total: $${total.toFixed(2)}\n\n`;
-
-    let again = prompt("Is another person ready to order? (yes or no)");
-    if (again !== "yes") {
-      loopCheck = false;
-      output.innerText += "Closing Time!\n";
-    }
-  }
-}
-</script>
-
+  <footer>
+    <p>&copy; 2025 Diego Martinez</p>
+  </footer>
 </body>
 </html>
